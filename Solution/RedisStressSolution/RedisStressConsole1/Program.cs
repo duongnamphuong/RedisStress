@@ -22,7 +22,7 @@ namespace RedisStressConsole1
                 cache = RedisConnectorHelper.Connection.GetDatabase();
                 Console.WriteLine("Connect to {0} successfully", ConfigurationManager.AppSettings["redisserver"]);
                 
-                var ProductKeys = server.Keys(pattern: "Product*");
+                var ProductKeys = server.Keys(pattern: "Product*").ToList();
 
                 #region delete
                 Console.WriteLine("DELETE all \"Product*\"-pattern keys in Redis...");
@@ -48,14 +48,15 @@ namespace RedisStressConsole1
                 Console.WriteLine($"Prepared {NumberOfProducts} products in {(end - start).TotalMilliseconds} millisecs");
                 #endregion
 
-                Console.Write($"How many heartbeats do you want to play on {ProductKeys.Count()} products? ");
+                Console.Write($"How many heartbeats do you want to play on {NumberOfProducts} products? ");
                 int NumberOfHeartbeats = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Preparing to spam {NumberOfHeartbeats} heatbeats on {ProductKeys.Count()} products...");
+                Console.WriteLine($"Preparing to spam {NumberOfHeartbeats} heatbeats on {NumberOfProducts} products...");
                 start = DateTime.Now;
                 for (int i = 0; i < NumberOfHeartbeats; i++)
                 {
-                    string key = $"Product{rnd.Next(1, ProductKeys.Count() + 1)}";
-                    cache.StringSet(key, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+                    string key = $"Product{rnd.Next(1, NumberOfProducts + 1)}";
+                    string value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
+                    cache.StringSet(key, value);
                 }
                 end = DateTime.Now;
                 Console.WriteLine($"Updating {NumberOfHeartbeats} heatbeats in {(end - start).TotalMilliseconds} millisecs");
