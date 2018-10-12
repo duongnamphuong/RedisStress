@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RedisUtil;
+using System;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RedisStressConsole1
 {
@@ -32,7 +30,7 @@ namespace RedisStressConsole1
                     cache.KeyDelete(key);
                 }
                 end = DateTime.Now;
-                Console.WriteLine("There are {0} \"Product*\"-pattern keys. Deleted them in {1} millisecs", ProductKeys.Count(), (end - start).TotalMilliseconds);
+                Console.WriteLine($"There are {ProductKeys.Count()} \"Product*\"-pattern keys. Deleted them in {(end - start).TotalMilliseconds} millisecs");
                 #endregion
 
                 #region add

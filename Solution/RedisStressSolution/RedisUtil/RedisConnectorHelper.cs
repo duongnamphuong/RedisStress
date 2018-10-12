@@ -2,9 +2,9 @@
 using System;
 using System.Configuration;
 
-namespace RedisStressConsole1
+namespace RedisUtil
 {
-    internal class RedisConnectorHelper
+    public class RedisConnectorHelper
     {
         static RedisConnectorHelper()
         {
