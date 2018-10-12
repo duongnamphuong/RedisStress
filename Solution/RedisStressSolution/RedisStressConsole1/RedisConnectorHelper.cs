@@ -2,7 +2,7 @@
 using System;
 using System.Configuration;
 
-namespace RedisConnectionTest
+namespace RedisStressConsole1
 {
     internal class RedisConnectorHelper
     {
