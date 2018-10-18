@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisUtil", "RedisUtil\Redi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{3B6A2326-2DFA-48DB-92B0-62398955B6EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{861FC3E2-DC77-4275-9D0A-1B804692695B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3B6A2326-2DFA-48DB-92B0-62398955B6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B6A2326-2DFA-48DB-92B0-62398955B6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B6A2326-2DFA-48DB-92B0-62398955B6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{861FC3E2-DC77-4275-9D0A-1B804692695B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861FC3E2-DC77-4275-9D0A-1B804692695B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861FC3E2-DC77-4275-9D0A-1B804692695B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861FC3E2-DC77-4275-9D0A-1B804692695B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
