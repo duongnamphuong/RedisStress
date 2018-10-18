@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{861FC3E2-DC77-4275-9D0A-1B804692695B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbGateway", "DbGateway\DbGateway.csproj", "{D5B82212-5B45-48DF-B247-828B98171E51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{861FC3E2-DC77-4275-9D0A-1B804692695B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{861FC3E2-DC77-4275-9D0A-1B804692695B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{861FC3E2-DC77-4275-9D0A-1B804692695B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5B82212-5B45-48DF-B247-828B98171E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5B82212-5B45-48DF-B247-828B98171E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5B82212-5B45-48DF-B247-828B98171E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5B82212-5B45-48DF-B247-828B98171E51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -185,9 +185,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dal\Dal.csproj">
-      <Project>{861fc3e2-dc77-4275-9d0a-1b804692695b}</Project>
-      <Name>Dal</Name>
+    <ProjectReference Include="..\DbGateway\DbGateway.csproj">
+      <Project>{d5b82212-5b45-48df-b247-828b98171e51}</Project>
+      <Name>DbGateway</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
