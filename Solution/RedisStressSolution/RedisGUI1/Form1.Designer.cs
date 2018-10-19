@@ -1,6 +1,6 @@
 ﻿namespace RedisGUI1
 {
-    partial class btnSpam
+    partial class spamForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnConnect = new System.Windows.Forms.Button();
             this.btnDeleteAllProduct = new System.Windows.Forms.Button();
             this.txtNumberOfProducts = new System.Windows.Forms.TextBox();
             this.lblProducts = new System.Windows.Forms.Label();
             this.btnSetup = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSpam = new System.Windows.Forms.Button();
             this.txtNumberOfHeartbeats = new System.Windows.Forms.TextBox();
             this.lblHeartbeat = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(13, 24);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.TabIndex = 0;
+            this.btnConnect.Text = "&Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // btnDeleteAllProduct
             // 
@@ -73,15 +84,15 @@
             this.btnSetup.UseVisualStyleBackColor = true;
             this.btnSetup.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // button1
+            // btnSpam
             // 
-            this.button1.Location = new System.Drawing.Point(13, 110);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "S&pam";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSpam.Location = new System.Drawing.Point(13, 110);
+            this.btnSpam.Name = "btnSpam";
+            this.btnSpam.Size = new System.Drawing.Size(56, 23);
+            this.btnSpam.TabIndex = 5;
+            this.btnSpam.Text = "S&pam";
+            this.btnSpam.UseVisualStyleBackColor = true;
+            this.btnSpam.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtNumberOfHeartbeats
             // 
@@ -99,19 +110,20 @@
             this.lblHeartbeat.TabIndex = 7;
             this.lblHeartbeat.Text = "heartbeats";
             // 
-            // btnSpam
+            // spamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.lblHeartbeat);
             this.Controls.Add(this.txtNumberOfHeartbeats);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSpam);
             this.Controls.Add(this.btnSetup);
             this.Controls.Add(this.lblProducts);
             this.Controls.Add(this.txtNumberOfProducts);
             this.Controls.Add(this.btnDeleteAllProduct);
-            this.Name = "btnSpam";
+            this.Controls.Add(this.btnConnect);
+            this.Name = "spamForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -119,11 +131,13 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnDeleteAllProduct;
         private System.Windows.Forms.TextBox txtNumberOfProducts;
         private System.Windows.Forms.Label lblProducts;
         private System.Windows.Forms.Button btnSetup;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSpam;
         private System.Windows.Forms.TextBox txtNumberOfHeartbeats;
         private System.Windows.Forms.Label lblHeartbeat;
     }
