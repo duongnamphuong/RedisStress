@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AppServer.Singleton;
+using ProtocolUtil;
+using ProtocolUtil.Event;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +22,10 @@ namespace AppServer
 
         public void RunStartActions()
         {
+            HbListener.Instance.PacketConnection = new UdpConnection();
+            HbListener.Instance.PacketConnection.DataReceived += new EventHandler<PacketDataReceivedEventArgs>(HbListener.Instance.DataReceived);
+            HbListener.Instance.PacketConnection.DataSent += new EventHandler<PacketDataSentEventArgs>(HbListener.Instance.DataSent);
+            HbListener.Instance.PacketConnection.StartUdpListening(4060);
         }
 
         protected override void OnStart(string[] args)
