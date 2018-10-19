@@ -10,7 +10,17 @@ namespace AppServer
     {
         static void Main(string[] args)
         {
-            LogUtil.Log4netLogger.Info("Main");
+            LogUtil.Log4netLogger.Info("Running Windows service as a Console");
+            try
+            {
+                var service1 = new Service1();
+                service1.RunStartActions();
+            }
+            catch (Exception e)
+            {
+                LogUtil.Log4netLogger.Error("Error when trying to start Windows service as a Console", e);
+            }
+            Console.Write("Press Enter to terminate this Console");
             Console.ReadLine();
         }
     }

@@ -17,14 +17,26 @@ namespace AppServer
             InitializeComponent();
         }
 
+        public void RunStartActions()
+        {
+        }
+
         protected override void OnStart(string[] args)
         {
-            LogUtil.Log4netLogger.Info("OnStart");
+            LogUtil.Log4netLogger.Info("Windows service OnStart");
+            try
+            {
+                RunStartActions();
+            }
+            catch (Exception e)
+            {
+                LogUtil.Log4netLogger.Error("Error when starting Windows service", e);
+            }
         }
 
         protected override void OnStop()
         {
-            LogUtil.Log4netLogger.Info("OnStop");
+            LogUtil.Log4netLogger.Info("Windows service OnStop");
         }
     }
 }
