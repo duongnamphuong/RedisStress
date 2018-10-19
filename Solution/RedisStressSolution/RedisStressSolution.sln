@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServer", "AppServer\AppS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogUtil", "LogUtil\LogUtil.csproj", "{9E6E0792-1D00-4728-9BAA-5B953D44A51E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtocolUtil", "ProtocolUtil\ProtocolUtil.csproj", "{5CA0B460-C3E0-4195-9D05-182003FB80E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{9E6E0792-1D00-4728-9BAA-5B953D44A51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E6E0792-1D00-4728-9BAA-5B953D44A51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E6E0792-1D00-4728-9BAA-5B953D44A51E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA0B460-C3E0-4195-9D05-182003FB80E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA0B460-C3E0-4195-9D05-182003FB80E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA0B460-C3E0-4195-9D05-182003FB80E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA0B460-C3E0-4195-9D05-182003FB80E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
