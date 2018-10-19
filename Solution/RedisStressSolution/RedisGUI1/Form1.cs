@@ -14,8 +14,6 @@ namespace RedisGUI1
 {
     public partial class btnSpam : Form
     {
-        private StackExchange.Redis.IServer server = null;
-        private StackExchange.Redis.IDatabase cache = null;
         private int? NumberOfProducts = null;
 
         public btnSpam()
@@ -23,29 +21,15 @@ namespace RedisGUI1
             InitializeComponent();
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                server = RedisConnectorHelper.Connection.GetServer(ConfigurationManager.AppSettings["redisserver"]);
-                cache = RedisConnectorHelper.Connection.GetDatabase();
-                MessageBox.Show("Connect successfully");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
         private void btnDeleteAllProduct_Click(object sender, EventArgs e)
         {
             try
             {
-                var ProductKeys = server.Keys(pattern: "Product*").ToList();
+                var ProductKeys = RedisConnectorHelper.Server.Keys(pattern: "Product*").ToList();
                 var start = DateTime.Now;
                 foreach (var key in ProductKeys)
                 {
-                    cache.KeyDelete(key);
+                    RedisConnectorHelper.Cache.KeyDelete(key);
                 }
                 var end = DateTime.Now;
                 MessageBox.Show($"There are {ProductKeys.Count()} \"Product*\"-pattern keys. Deleted them in {(end - start).TotalMilliseconds} millisecs");
@@ -64,7 +48,7 @@ namespace RedisGUI1
                 NumberOfProducts = int.Parse(txtNumberOfProducts.Text);
                 for (int i = 1; i <= NumberOfProducts.Value; i++)
                 {
-                    cache.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+                    RedisConnectorHelper.Cache.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
                 }
                 var end = DateTime.Now;
                 MessageBox.Show($"Prepared {NumberOfProducts.Value} products in {(end - start).TotalMilliseconds} millisecs");
@@ -87,7 +71,7 @@ namespace RedisGUI1
                 {
                     string key = $"Product{rnd.Next(1, NumberOfProducts.Value + 1)}";
                     string value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
-                    cache.StringSet(key, value);
+                    RedisConnectorHelper.Cache.StringSet(key, value);
                 }
                 var end = DateTime.Now;
                 MessageBox.Show($"Updating {NumberOfHeartbeats} heatbeats in {(end - start).TotalMilliseconds} millisecs");

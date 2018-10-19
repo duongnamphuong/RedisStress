@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnConnect = new System.Windows.Forms.Button();
             this.btnDeleteAllProduct = new System.Windows.Forms.Button();
             this.txtNumberOfProducts = new System.Windows.Forms.TextBox();
             this.lblProducts = new System.Windows.Forms.Label();
@@ -37,16 +36,6 @@
             this.txtNumberOfHeartbeats = new System.Windows.Forms.TextBox();
             this.lblHeartbeat = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.Location = new System.Drawing.Point(13, 24);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(75, 23);
-            this.btnConnect.TabIndex = 0;
-            this.btnConnect.Text = "&Connect";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // btnDeleteAllProduct
             // 
@@ -122,7 +111,6 @@
             this.Controls.Add(this.lblProducts);
             this.Controls.Add(this.txtNumberOfProducts);
             this.Controls.Add(this.btnDeleteAllProduct);
-            this.Controls.Add(this.btnConnect);
             this.Name = "btnSpam";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -131,8 +119,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnDeleteAllProduct;
         private System.Windows.Forms.TextBox txtNumberOfProducts;
         private System.Windows.Forms.Label lblProducts;

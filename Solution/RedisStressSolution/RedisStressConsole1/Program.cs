@@ -9,25 +9,18 @@ namespace RedisStressConsole1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Connecting to server...");
-            StackExchange.Redis.IServer server = null;
-            StackExchange.Redis.IDatabase cache = null;
             DateTime start, end;
             var rnd = new Random();
             try
             {
-                server = RedisConnectorHelper.Connection.GetServer(ConfigurationManager.AppSettings["redisserver"]);
-                cache = RedisConnectorHelper.Connection.GetDatabase();
-                Console.WriteLine("Connect to {0} successfully", ConfigurationManager.AppSettings["redisserver"]);
-                
-                var ProductKeys = server.Keys(pattern: "Product*").ToList();
+                var ProductKeys = RedisConnectorHelper.Server.Keys(pattern: "Product*").ToList();
 
                 #region delete
                 Console.WriteLine("DELETE all \"Product*\"-pattern keys in Redis...");
                 start = DateTime.Now;
                 foreach (var key in ProductKeys)
                 {
-                    cache.KeyDelete(key);
+                    RedisConnectorHelper.Cache.KeyDelete(key);
                 }
                 end = DateTime.Now;
                 Console.WriteLine($"There are {ProductKeys.Count()} \"Product*\"-pattern keys. Deleted them in {(end - start).TotalMilliseconds} millisecs");
@@ -40,7 +33,7 @@ namespace RedisStressConsole1
                 start = DateTime.Now;
                 for (int i = 1; i <= NumberOfProducts; i++)
                 {
-                    cache.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+                    RedisConnectorHelper.Cache.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
                 }
                 end = DateTime.Now;
                 Console.WriteLine($"Prepared {NumberOfProducts} products in {(end - start).TotalMilliseconds} millisecs");
@@ -54,7 +47,7 @@ namespace RedisStressConsole1
                 {
                     string key = $"Product{rnd.Next(1, NumberOfProducts + 1)}";
                     string value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
-                    cache.StringSet(key, value);
+                    RedisConnectorHelper.Cache.StringSet(key, value);
                 }
                 end = DateTime.Now;
                 Console.WriteLine($"Updating {NumberOfHeartbeats} heatbeats in {(end - start).TotalMilliseconds} millisecs");
