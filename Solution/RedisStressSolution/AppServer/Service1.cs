@@ -12,7 +12,6 @@ namespace AppServer
 {
     public partial class Service1 : ServiceBase
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public Service1()
         {
             InitializeComponent();
@@ -20,12 +19,12 @@ namespace AppServer
 
         protected override void OnStart(string[] args)
         {
-            log.Info("OnStart");
+            LogUtil.Log4netLogger.Info("OnStart");
         }
 
         protected override void OnStop()
         {
-            log.Info("OnStop");
+            LogUtil.Log4netLogger.Info("OnStop");
         }
     }
 }
