@@ -17,5 +17,37 @@ namespace LogUtil
         {
             log.Info(message, exception);
         }
+        public static void Warn(object message)
+        {
+            log.Warn(message);
+        }
+        public static void Warn(object message, Exception exception)
+        {
+            log.Warn(message, exception);
+        }
+        public static void Error(object message)
+        {
+            log.Error(message);
+        }
+        public static void Error(object message, Exception exception)
+        {
+            log.Error(message, exception);
+        }
+        public static void Debug(object message)
+        {
+            log.Debug(message);
+        }
+        public static void Debug(object message, Exception exception)
+        {
+            log.Debug(message, exception);
+        }
+        public static void Fatal(object message)
+        {
+            log.Fatal(message);
+        }
+        public static void Fatal(object message, Exception exception)
+        {
+            log.Fatal(message, exception);
+        }
     }
 }
