@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace AppServer
     {
         static void Main(string[] args)
         {
-            LogUtil.Log4netLogger.Info(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "Running Windows service as a Console");
+            LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Running Windows service as a Console");
             try
             {
                 var service1 = new Service1();
@@ -18,7 +19,7 @@ namespace AppServer
             }
             catch (Exception e)
             {
-                LogUtil.Log4netLogger.Error(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "Error when trying to start Windows service as a Console", e);
+                LogUtil.Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, "Error when trying to start Windows service as a Console", e);
             }
             Console.Write("Press Enter to terminate this Console");
             Console.ReadLine();
