@@ -30,20 +30,20 @@ namespace AppServer
 
         protected override void OnStart(string[] args)
         {
-            LogUtil.Log4netLogger.Info("Windows service OnStart");
+            LogUtil.Log4netLogger.Info(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStart");
             try
             {
                 RunStartActions();
             }
             catch (Exception e)
             {
-                LogUtil.Log4netLogger.Error("Error when starting Windows service", e);
+                LogUtil.Log4netLogger.Error(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "Error when starting Windows service", e);
             }
         }
 
         protected override void OnStop()
         {
-            LogUtil.Log4netLogger.Info("Windows service OnStop");
+            LogUtil.Log4netLogger.Info(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStop");
         }
     }
 }

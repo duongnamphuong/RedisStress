@@ -8,45 +8,54 @@ namespace LogUtil
 {
     public static class Log4netLogger
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public static void Info(object message)
+        public static void Info(Type caller, object message)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Info(message);
         }
-        public static void Info(object message, Exception exception)
+        public static void Info(Type caller, object message, Exception exception)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Info(message, exception);
         }
-        public static void Warn(object message)
+        public static void Warn(Type caller, object message)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Warn(message);
         }
-        public static void Warn(object message, Exception exception)
+        public static void Warn(Type caller, object message, Exception exception)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Warn(message, exception);
         }
-        public static void Error(object message)
+        public static void Error(Type caller, object message)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Error(message);
         }
-        public static void Error(object message, Exception exception)
+        public static void Error(Type caller, object message, Exception exception)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Error(message, exception);
         }
-        public static void Debug(object message)
+        public static void Debug(Type caller, object message)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Debug(message);
         }
-        public static void Debug(object message, Exception exception)
+        public static void Debug(Type caller, object message, Exception exception)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Debug(message, exception);
         }
-        public static void Fatal(object message)
+        public static void Fatal(Type caller, object message)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Fatal(message);
         }
-        public static void Fatal(object message, Exception exception)
+        public static void Fatal(Type caller, object message, Exception exception)
         {
+            var log = log4net.LogManager.GetLogger(caller);
             log.Fatal(message, exception);
         }
     }
