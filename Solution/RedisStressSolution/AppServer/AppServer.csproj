@@ -89,6 +89,10 @@
       <Project>{5ca0b460-c3e0-4195-9d05-182003fb80e0}</Project>
       <Name>ProtocolUtil</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RedisUtil\RedisUtil.csproj">
+      <Project>{07cfe26a-3a08-4e6e-869e-a0b36f70610f}</Project>
+      <Name>RedisUtil</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
