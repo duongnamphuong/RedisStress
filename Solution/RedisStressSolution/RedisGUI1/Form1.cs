@@ -58,7 +58,7 @@ namespace RedisGUI1
                 NumberOfProducts = int.Parse(txtNumberOfProducts.Text);
                 for (int i = 1; i <= NumberOfProducts.Value; i++)
                 {
-                    connector.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+                    connector.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 }
                 var end = DateTime.Now;
                 MessageBox.Show($"Prepared {NumberOfProducts.Value} products in {(end - start).TotalMilliseconds} millisecs");
@@ -80,7 +80,7 @@ namespace RedisGUI1
                 for (int i = 0; i < NumberOfHeartbeats; i++)
                 {
                     string key = $"Product{rnd.Next(1, NumberOfProducts.Value + 1)}";
-                    string value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
+                    string value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                     connector.StringSet(key, value);
                 }
                 var end = DateTime.Now;

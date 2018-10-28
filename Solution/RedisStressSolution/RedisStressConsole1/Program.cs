@@ -30,7 +30,7 @@ namespace RedisStressConsole1
                 start = DateTime.Now;
                 for (int i = 1; i <= NumberOfProducts; i++)
                 {
-                    connector.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+                    connector.StringSet($"Product{i}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 }
                 end = DateTime.Now;
                 Console.WriteLine($"Prepared {NumberOfProducts} products in {(end - start).TotalMilliseconds} millisecs");
@@ -43,7 +43,7 @@ namespace RedisStressConsole1
                 for (int i = 0; i < NumberOfHeartbeats; i++)
                 {
                     string key = $"Product{rnd.Next(1, NumberOfProducts + 1)}";
-                    string value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
+                    string value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                     connector.StringSet(key, value);
                 }
                 end = DateTime.Now;

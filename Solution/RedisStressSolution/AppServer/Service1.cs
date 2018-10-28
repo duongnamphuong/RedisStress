@@ -26,11 +26,10 @@ namespace AppServer
 
         private readonly EventHandler<PacketDataReceivedEventArgs> evtHandlerReceived = new EventHandler<PacketDataReceivedEventArgs>(HbListener.Instance.DataReceived);
         private readonly EventHandler<PacketDataSentEventArgs> evtHandlerSent = new EventHandler<PacketDataSentEventArgs>(HbListener.Instance.DataSent);
-        RedisConnector connector = null;
 
         public void RunStartActions()
         {
-            connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
+            HbListener.Instance.Connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
             LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Connected to Redis server.");
             List<Product> products = null;
             using (RedisStressContext ctx = new RedisStressContext())
@@ -41,7 +40,7 @@ namespace AppServer
             var start = DateTime.UtcNow;
             foreach (Product prod in products)
             {
-                connector.StringSet($"Product_{prod.Imei}_Heartbeat", (prod.LastHbUtc != null ? prod.LastHbUtc.Value.ToString("yyyy-MM-dd hh:mm:ss.fff") : ""));
+                HbListener.Instance.Connector.StringSet($"Product_{prod.Imei}_Heartbeat", (prod.LastHbUtc != null ? prod.LastHbUtc.Value.ToString("yyyy-MM-dd HH:mm:ss.fff") : ""));
             }
             var end = DateTime.UtcNow;
             LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Set {products.Count} Redis keys in {(end - start).TotalMilliseconds} millisecs.");
