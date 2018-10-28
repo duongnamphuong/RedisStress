@@ -28,6 +28,11 @@ namespace RedisUtil
             return _database.StringSet(key, value);
         }
 
+        public string StringGet(string key)
+        {
+            return _database.StringGet(key);
+        }
+
         /// <summary>
         /// Delete keys with certain pattern
         /// </summary>

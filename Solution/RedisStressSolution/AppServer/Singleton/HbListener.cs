@@ -54,8 +54,15 @@ namespace AppServer.Singleton
                     int ImeiInt = BitConverter.ToInt32(ImeiStream.Reverse().ToArray(), 0);
                     string ImeiWithLeadingZerosLength20 = ImeiInt.ToString("00000000000000000000");
                     LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Imei: {ImeiInt}. With leading zeros: {ImeiWithLeadingZerosLength20}");
-                    _connector.StringSet($"Product_{ImeiWithLeadingZerosLength20}_Heartbeat", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                    PacketConnection.Send(new byte[] { 0xAB, 0xFF, 0x06, e.BytesRead[3], e.BytesRead[4], e.BytesRead[5], e.BytesRead[6], 0x01, 0x01 }, e.DestinationTuple);
+                    string key = $"Product_{ImeiWithLeadingZerosLength20}_Heartbeat";
+                    string value = _connector.StringGet(key);
+
+                    //if found the key (value == null)
+                    if (value != null)
+                    {
+                        _connector.StringSet(key, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                        PacketConnection.Send(new byte[] { 0xAB, 0xFF, 0x06, e.BytesRead[3], e.BytesRead[4], e.BytesRead[5], e.BytesRead[6], 0x01, 0x01 }, e.DestinationTuple);
+                    }
                 }
                 catch (Exception ex)
                 {
