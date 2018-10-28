@@ -59,6 +59,8 @@ namespace AppServer
             LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "DataSent event Unsubscribed.");
             HbListener.Instance.PacketConnection.Dispose();
             LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Connection disposed.");
+            HbListener.Instance.Connector = null;
+            LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Redis connection set to null.");
         }
 
         protected override void OnStart(string[] args)

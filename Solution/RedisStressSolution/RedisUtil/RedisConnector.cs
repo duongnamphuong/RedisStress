@@ -50,5 +50,12 @@ namespace RedisUtil
             }
             return count;
         }
+
+        ~RedisConnector()
+        {
+            _lazyConnection = null;
+            _server = null;
+            _database = null;
+        }
     }
 }
