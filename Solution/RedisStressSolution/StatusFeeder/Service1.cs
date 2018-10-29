@@ -3,6 +3,7 @@ using Quartz;
 using Quartz.Impl;
 using RedisUtil;
 using StatusFeeder.QuartzJobs;
+using StatusFeeder.Singleton;
 using System;
 using System.Configuration;
 using System.Reflection;
@@ -12,7 +13,6 @@ namespace StatusFeeder
 {
     public partial class Service1 : ServiceBase
     {
-        private RedisConnector _connector = null;
         private ISchedulerFactory _schedulerFactory;
         private IScheduler _scheduler;
 
@@ -26,7 +26,7 @@ namespace StatusFeeder
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStart");
             try
             {
-                _connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
+                FeederHandler.Instance.Connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
 
                 #region Quartz
 
@@ -48,7 +48,7 @@ namespace StatusFeeder
         public void RunStopActions()
         {
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStop");
-            _connector = null;
+            FeederHandler.Instance.Connector = null;
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Redis connection set to null.");
 
             try
