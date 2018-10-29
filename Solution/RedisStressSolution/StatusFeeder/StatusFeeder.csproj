@@ -86,6 +86,10 @@
       <Project>{18a5794e-9a8b-440b-a1bf-66c46cb98866}</Project>
       <Name>QuartzDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RedisUtil\RedisUtil.csproj">
+      <Project>{07cfe26a-3a08-4e6e-869e-a0b36f70610f}</Project>
+      <Name>RedisUtil</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
