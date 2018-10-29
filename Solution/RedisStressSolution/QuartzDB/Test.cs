@@ -22,6 +22,11 @@ namespace QuartzDB
                 IScheduler sch = QuartzManagement.GetScheduler();
                 sch.ScheduleJob(job1, trigger1);
 
+                //Add a simple job
+                IJobDetail job2 = JobBuilder.Create<TestJob1>().WithIdentity("myJob2", "myGroup1").Build();
+                ITrigger trigger2 = TriggerBuilder.Create().WithIdentity("myTrigger2", "myGroup1").StartNow().WithSimpleSchedule(x => x.WithIntervalInSeconds(7).RepeatForever()).Build();
+                sch.ScheduleJob(job2, trigger2);
+
                 //start jobs
                 QuartzManagement.StartJobs();
             }

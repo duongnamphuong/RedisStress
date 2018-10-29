@@ -3,6 +3,7 @@ using System;
 
 namespace QuartzDB.Jobs
 {
+    [DisallowConcurrentExecution]
     internal class TestJob1 : IJob
     {
         public void Execute(IJobExecutionContext context)
