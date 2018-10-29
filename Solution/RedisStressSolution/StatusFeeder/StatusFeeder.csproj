@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QuartzJobs\HeartbeatFeeder.cs" />
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
     </Compile>
