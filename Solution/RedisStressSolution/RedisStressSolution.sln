@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogUtil", "LogUtil\LogUtil.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtocolUtil", "ProtocolUtil\ProtocolUtil.csproj", "{5CA0B460-C3E0-4195-9D05-182003FB80E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusFeeder", "StatusFeeder\StatusFeeder.csproj", "{38275F5D-2CD2-43A1-9FBD-AB79FD56AFA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{5CA0B460-C3E0-4195-9D05-182003FB80E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CA0B460-C3E0-4195-9D05-182003FB80E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CA0B460-C3E0-4195-9D05-182003FB80E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38275F5D-2CD2-43A1-9FBD-AB79FD56AFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38275F5D-2CD2-43A1-9FBD-AB79FD56AFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38275F5D-2CD2-43A1-9FBD-AB79FD56AFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38275F5D-2CD2-43A1-9FBD-AB79FD56AFA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
