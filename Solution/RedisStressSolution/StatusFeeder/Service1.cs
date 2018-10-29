@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Reflection;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StatusFeeder
 {
@@ -17,12 +10,24 @@ namespace StatusFeeder
             InitializeComponent();
         }
 
+        public void RunStartActions()
+        {
+            LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStart");
+        }
+
+        public void RunStopActions()
+        {
+            LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStop");
+        }
+
         protected override void OnStart(string[] args)
         {
+            RunStartActions();
         }
 
         protected override void OnStop()
         {
+            RunStopActions();
         }
     }
 }
