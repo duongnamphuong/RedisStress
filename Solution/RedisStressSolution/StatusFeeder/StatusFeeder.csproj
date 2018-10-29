@@ -83,10 +83,6 @@
       <Project>{9e6e0792-1d00-4728-9baa-5b953d44a51e}</Project>
       <Name>LogUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\QuartzDB\QuartzDB.csproj">
-      <Project>{18a5794e-9a8b-440b-a1bf-66c46cb98866}</Project>
-      <Name>QuartzDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RedisUtil\RedisUtil.csproj">
       <Project>{07cfe26a-3a08-4e6e-869e-a0b36f70610f}</Project>
       <Name>RedisUtil</Name>
