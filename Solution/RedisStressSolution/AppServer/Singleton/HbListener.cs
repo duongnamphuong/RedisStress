@@ -1,4 +1,5 @@
-﻿using ProtocolUtil;
+﻿using LogUtil;
+using ProtocolUtil;
 using ProtocolUtil.Event;
 using ProtocolUtil.Utils;
 using RedisUtil;
@@ -45,7 +46,7 @@ namespace AppServer.Singleton
 
         public void DataReceived(object sender, PacketDataReceivedEventArgs e)
         {
-            LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Get {e.TotalBytesRead} byte(s): 0x{e.DataRead}");
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Get {e.TotalBytesRead} byte(s): 0x{e.DataRead}");
             if (e.TotalBytesRead == 8 && e.DataRead.Substring(0, 6) == "AB0106" && e.DataRead.Substring(14, 2) == "00")
             {
                 try
@@ -53,7 +54,7 @@ namespace AppServer.Singleton
                     byte[] ImeiStream = e.BytesRead.Skip(3).Take(4).ToArray();
                     int ImeiInt = BitConverter.ToInt32(ImeiStream.Reverse().ToArray(), 0);
                     string ImeiWithLeadingZerosLength20 = ImeiInt.ToString("00000000000000000000");
-                    LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Imei: {ImeiInt}. With leading zeros: {ImeiWithLeadingZerosLength20}");
+                    Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Imei: {ImeiInt}. With leading zeros: {ImeiWithLeadingZerosLength20}");
                     string key = $"Product_{ImeiWithLeadingZerosLength20}_Heartbeat";
                     string value = _connector.StringGet(key);
 
@@ -73,7 +74,7 @@ namespace AppServer.Singleton
 
         public void DataSent(object sender, PacketDataSentEventArgs e)
         {
-            LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Send {e.Data.Count()} byte(s) 0x{ByteStreamUtil.ByteToHexBit(e.Data)}");
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Send {e.Data.Count()} byte(s) 0x{ByteStreamUtil.ByteToHexBit(e.Data)}");
         }
     }
 }

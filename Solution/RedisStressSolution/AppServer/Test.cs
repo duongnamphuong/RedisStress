@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogUtil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,7 +12,7 @@ namespace AppServer
     {
         static void Main(string[] args)
         {
-            LogUtil.Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Running Windows service as a Console...");
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Running Windows service as a Console...");
             var service1 = new Service1();
             try
             {
