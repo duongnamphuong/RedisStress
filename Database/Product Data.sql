@@ -1,3 +1,4 @@
+use RedisStress
 declare @Max int=100000
 declare @i int=1
 while @i<=@Max
