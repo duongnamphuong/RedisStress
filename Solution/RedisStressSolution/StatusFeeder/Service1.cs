@@ -1,4 +1,5 @@
-﻿using LogUtil;
+﻿using Dal;
+using LogUtil;
 using Quartz;
 using Quartz.Impl;
 using RedisUtil;
@@ -6,6 +7,7 @@ using StatusFeeder.QuartzJobs;
 using StatusFeeder.Singleton;
 using System;
 using System.Configuration;
+using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 
@@ -27,6 +29,11 @@ namespace StatusFeeder
             try
             {
                 FeederHandler.Instance.Connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
+                using (RedisStressContext ctx = new RedisStressContext())
+                {
+                    FeederHandler.Instance.ImeiList= ctx.Products.Select(p => p.Imei).ToList();
+                }
+                Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Loaded {FeederHandler.Instance.ImeiList.Count} IMEIs from SQL Server database into memory.");
 
                 #region Quartz
 

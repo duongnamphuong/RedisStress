@@ -1,5 +1,6 @@
 ﻿using RedisUtil;
 using System;
+using System.Collections.Generic;
 
 namespace StatusFeeder.Singleton
 {
@@ -29,11 +30,20 @@ namespace StatusFeeder.Singleton
         }
 
         #endregion
+
         private RedisConnector _connector = null;
+        private List<string> _imeiList = new List<string>();
+
         public RedisConnector Connector
         {
             get { return _connector; }
             set { _connector = value; }
+        }
+
+        public List<string> ImeiList
+        {
+            get { return _imeiList; }
+            set { _imeiList = value; }
         }
     }
 }
