@@ -41,6 +41,12 @@ namespace ProtocolUtil
             }
         }
 
+        public DestinationTuple destinationTuple
+        {
+            get { return dt; }
+            set { dt = value; }
+        }
+
         public void StartUdpListening(int port)
         {
             this.ConnectionSocket = SocketUtil.BindUDPConnection(new IPEndPoint(IPAddress.Any, port));

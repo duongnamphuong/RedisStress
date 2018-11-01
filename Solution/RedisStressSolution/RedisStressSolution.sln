@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusFeeder", "StatusFeede
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzDB", "QuartzDB\QuartzDB.csproj", "{18A5794E-9A8B-440B-A1BF-66C46CB98866}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spammer", "Spammer\Spammer.csproj", "{07412CC5-1FF8-46E9-A6AF-5DB9980F91E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{18A5794E-9A8B-440B-A1BF-66C46CB98866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18A5794E-9A8B-440B-A1BF-66C46CB98866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18A5794E-9A8B-440B-A1BF-66C46CB98866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07412CC5-1FF8-46E9-A6AF-5DB9980F91E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07412CC5-1FF8-46E9-A6AF-5DB9980F91E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07412CC5-1FF8-46E9-A6AF-5DB9980F91E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07412CC5-1FF8-46E9-A6AF-5DB9980F91E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

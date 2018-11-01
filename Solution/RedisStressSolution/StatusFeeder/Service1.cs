@@ -55,9 +55,6 @@ namespace StatusFeeder
         public void RunStopActions()
         {
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStop");
-            FeederHandler.Instance.Connector = null;
-            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Redis connection set to null.");
-
             try
             {
                 #region Quartz
@@ -71,6 +68,8 @@ namespace StatusFeeder
             {
                 Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, ex);
             }
+            FeederHandler.Instance.Connector = null;
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Redis connection set to null.");
         }
 
         protected override void OnStart(string[] args)
