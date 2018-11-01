@@ -36,8 +36,7 @@ namespace StatusFeeder.QuartzJobs
                 }
                 catch (Exception ex)
                 {
-                    Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, $"Exception in loop #{i}");
-                    Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, ex);
+                    Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, $"Exception in loop #{i}: {ex}");
                 }
             }
         }
