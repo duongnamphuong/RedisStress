@@ -39,11 +39,13 @@ namespace AppServer
                 Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Get {products.Count} products.");
             }
             var start = DateTime.UtcNow;
+            int count = 0;
             foreach (Product prod in products)
             {
                 try
                 {
                     HbListener.Instance.Connector.StringSet($"Product_{prod.Imei}_Heartbeat", (prod.LastHbUtc != null ? prod.LastHbUtc.Value.ToString("yyyy-MM-dd HH:mm:ss.fff") : ""));
+                    count++;
                 }
                 catch (Exception ex)
                 {
@@ -51,7 +53,7 @@ namespace AppServer
                 }
             }
             var end = DateTime.UtcNow;
-            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Set {products.Count} Redis keys in {(end - start).TotalMilliseconds} millisecs.");
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Set {count} Redis keys in {(end - start).TotalMilliseconds} millisecs.");
             HbListener.Instance.PacketConnection = new UdpConnection();
             HbListener.Instance.PacketConnection.DataReceived += evtHandlerReceived;
             HbListener.Instance.PacketConnection.DataSent += evtHandlerSent;
