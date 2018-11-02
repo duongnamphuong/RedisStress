@@ -47,7 +47,7 @@ namespace AppServer
                 }
                 catch (Exception ex)
                 {
-                    LogUtil.Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, ex);
+                    Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, ex);
                 }
             }
             var end = DateTime.UtcNow;
@@ -80,7 +80,7 @@ namespace AppServer
             }
             catch (Exception e)
             {
-                LogUtil.Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, "Error when starting Windows service", e);
+                Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, "Error when starting Windows service", e);
             }
         }
 
