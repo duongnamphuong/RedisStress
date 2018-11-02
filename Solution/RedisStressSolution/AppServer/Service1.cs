@@ -41,14 +41,21 @@ namespace AppServer
             var start = DateTime.UtcNow;
             foreach (Product prod in products)
             {
-                HbListener.Instance.Connector.StringSet($"Product_{prod.Imei}_Heartbeat", (prod.LastHbUtc != null ? prod.LastHbUtc.Value.ToString("yyyy-MM-dd HH:mm:ss.fff") : ""));
+                try
+                {
+                    HbListener.Instance.Connector.StringSet($"Product_{prod.Imei}_Heartbeat", (prod.LastHbUtc != null ? prod.LastHbUtc.Value.ToString("yyyy-MM-dd HH:mm:ss.fff") : ""));
+                }
+                catch (Exception ex)
+                {
+                    LogUtil.Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, ex);
+                }
             }
             var end = DateTime.UtcNow;
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Set {products.Count} Redis keys in {(end - start).TotalMilliseconds} millisecs.");
             HbListener.Instance.PacketConnection = new UdpConnection();
             HbListener.Instance.PacketConnection.DataReceived += evtHandlerReceived;
             HbListener.Instance.PacketConnection.DataSent += evtHandlerSent;
-            HbListener.Instance.PacketConnection.StartUdpListening(4060);
+            HbListener.Instance.PacketConnection.StartUdpListening(int.Parse(ConfigurationManager.AppSettings["listenport"]));
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Heartbeat listener is running...");
         }
 
