@@ -46,7 +46,7 @@ namespace AppServer.Singleton
 
         public void DataReceived(object sender, PacketDataReceivedEventArgs e)
         {
-            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Get {e.TotalBytesRead} byte(s): 0x{e.DataRead}");
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"Get {e.TotalBytesRead} byte(s): 0x{e.DataRead} from {e.DestinationTuple.RemoteEndPoint}");
             if (e.TotalBytesRead == 8 && e.DataRead.Substring(0, 6) == "AB0106" && e.DataRead.Substring(14, 2) == "00")
             {
                 try
