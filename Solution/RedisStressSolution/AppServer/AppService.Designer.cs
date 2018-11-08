@@ -1,6 +1,6 @@
 ﻿namespace AppServer
 {
-    partial class Service1
+    partial class AppService
     {
         /// <summary> 
         /// Required designer variable.

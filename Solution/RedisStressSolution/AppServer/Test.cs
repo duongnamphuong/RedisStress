@@ -13,7 +13,7 @@ namespace AppServer
         static void Main(string[] args)
         {
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Running Windows service as a Console...");
-            var service1 = new Service1();
+            var service1 = new AppService();
             try
             {
                 service1.RunStartActions();

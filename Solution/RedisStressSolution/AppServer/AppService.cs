@@ -18,9 +18,9 @@ using System.Threading.Tasks;
 
 namespace AppServer
 {
-    public partial class Service1 : ServiceBase
+    public partial class AppService : ServiceBase
     {
-        public Service1()
+        public AppService()
         {
             InitializeComponent();
         }
