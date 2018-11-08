@@ -40,7 +40,7 @@ namespace StatusFeeder
                 _schedulerFactory = new StdSchedulerFactory();
                 _scheduler = _schedulerFactory.GetScheduler();
                 IJobDetail job = JobBuilder.Create<HeartbeatFeeder>().WithIdentity("StatusFeederJob", "StatusFeederGroup").Build();
-                ITrigger trigger = TriggerBuilder.Create().WithIdentity("StatusFeederTrigger", "StatusFeederGroup").StartNow().WithSimpleSchedule(x => x.WithIntervalInSeconds(int.Parse(ConfigurationManager.AppSettings["HeartbeatFeedPeriodInSeconds"])).RepeatForever()).Build();
+                ITrigger trigger = TriggerBuilder.Create().WithIdentity("StatusFeederTrigger", "StatusFeederGroup").WithCronSchedule(ConfigurationManager.AppSettings["StatusFeederCron"], x => x.InTimeZone(TimeZoneInfo.FindSystemTimeZoneById("UTC"))).Build();
                 _scheduler.ScheduleJob(job, trigger);
                 _scheduler.Start();
 
