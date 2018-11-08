@@ -1,6 +1,6 @@
 ﻿namespace StatusFeeder
 {
-    partial class Service1
+    partial class FeederService
     {
         /// <summary> 
         /// Required designer variable.

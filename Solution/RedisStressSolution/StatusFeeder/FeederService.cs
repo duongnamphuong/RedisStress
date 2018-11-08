@@ -13,12 +13,12 @@ using System.ServiceProcess;
 
 namespace StatusFeeder
 {
-    public partial class Service1 : ServiceBase
+    public partial class FeederService : ServiceBase
     {
         private ISchedulerFactory _schedulerFactory;
         private IScheduler _scheduler;
 
-        public Service1()
+        public FeederService()
         {
             InitializeComponent();
         }
