@@ -1,7 +1,9 @@
-﻿using System;
+﻿using LogUtil;
+using System;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Threading;
 
 namespace ProtocolUtil
@@ -81,6 +83,8 @@ namespace ProtocolUtil
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize((object)this);
         }
 
         private void PurgingThreadStart()
@@ -121,6 +125,85 @@ namespace ProtocolUtil
 
                 deleteList = null;
                 Thread.Sleep(10000);
+            }
+        }
+
+        ~TcpConnection()
+        {
+            this.Dispose(false);
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                }
+                disposed = true;
+                this.Disconnect();
+                if (this.ConnectionSocket != null)
+                {
+                    return;
+                }
+                this.Dispose();
+                this.ConnectionSocket = (TcpListener)null;
+            }
+        }
+
+        private void Disconnect()
+        {
+            try
+            {
+                if (this.ConnectionSocket == null)
+                    return;
+                this.StopServer();
+            }
+            catch (Exception exception)
+            {
+                Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, exception);
+            }
+        }
+
+        public void StopServer()
+        {
+            if (this.ConnectionSocket != null)
+            {
+                // It is important to Stop the server first before doing
+                // any cleanup. If not so, clients might being added as
+                // server is running, but supporting data structures
+                // (such as m_socketListenersList) are cleared. This might
+                // cause exceptions.
+
+                // Stop the TCP/IP Server.
+                _stopServer = true;
+                this.ConnectionSocket.Stop();
+
+                // Wait for one second for the the thread to stop.
+                _serverThread.Join(1000);
+
+                // If still alive; Get rid of the thread.
+                if (_serverThread.IsAlive)
+                {
+                    _serverThread.Abort();
+                }
+                _serverThread = null;
+
+                _stopPurging = true;
+                _purgingThread.Join(1000);
+                if (_purgingThread.IsAlive)
+                {
+                    _purgingThread.Abort();
+                }
+                _purgingThread = null;
+
+                // Free Server Object.
+                this.ConnectionSocket = null;
+
+                // Stop All clients.
+                //StopAllSocketListers();
             }
         }
     }

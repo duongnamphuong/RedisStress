@@ -1,7 +1,10 @@
-﻿using System;
+﻿using LogUtil;
+using ProtocolUtil.Utils;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 
@@ -38,10 +41,10 @@ namespace ProtocolUtil
 
         private void StartConversation()
         {
-            Console.WriteLine(this._clientSocketAddress + "Start");
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"{_clientSocketAddress} Start");
             _lastReceiveDateTime = DateTime.UtcNow;
             _currentReceiveDateTime = DateTime.UtcNow;
-            Timer t = new Timer(new TimerCallback(CheckClientCommInterval), null, 900000, 900000);
+            Timer t = new Timer(new TimerCallback(CheckClientCommInterval), null, 15000, 15000);
             int bytesRec = 0;
 
             byte[] dataBytes = new byte[4096];
@@ -61,11 +64,15 @@ namespace ProtocolUtil
                     {
                         byte[] shrinkDataBytes = new byte[bytesRec];
                         Array.Copy(dataBytes, shrinkDataBytes, bytesRec);
-                        SendMessage(Encoding.ASCII.GetBytes("<Ack>").Concat(shrinkDataBytes).Concat(Encoding.ASCII.GetBytes("<\\Ack>")).ToArray());
+                        Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"{_clientSocketAddress} received {bytesRec} bytes: {ByteStreamUtil.ByteToHexBit(shrinkDataBytes)}");
+                        byte[] answer = Encoding.ASCII.GetBytes("<Ack>").Concat(shrinkDataBytes).Concat(Encoding.ASCII.GetBytes("<\\Ack>")).ToArray();
+                        SendMessage(answer);
+                        Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"{_clientSocketAddress} sent {answer.Count()} bytes: {ByteStreamUtil.ByteToHexBit(answer)}");
                     }
                 }
                 catch (Exception exception)
                 {
+                    Log4netLogger.Error(MethodBase.GetCurrentMethod().DeclaringType, $"{_clientSocketAddress} exception {exception}");
                     _stopClient = true;
                     _markedForDeletion = true;
                 }
@@ -74,7 +81,7 @@ namespace ProtocolUtil
             _markedForDeletion = true;
             t.Change(Timeout.Infinite, Timeout.Infinite);
             t = null;
-            Console.WriteLine(this._clientSocketAddress + "End");
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"{_clientSocketAddress} End");
         }
 
         private void CheckClientCommInterval(object o)

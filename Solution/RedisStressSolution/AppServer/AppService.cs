@@ -70,6 +70,10 @@ namespace AppServer
             HbListener.Instance.PacketConnection.DataSent += evtHandlerSent;
             HbListener.Instance.PacketConnection.StartUdpListening(int.Parse(ConfigurationManager.AppSettings["listenport"]));
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Heartbeat listener is running...");
+
+            InternalNetworkListener.Instance.TcpConnection = new TcpConnection();
+            InternalNetworkListener.Instance.TcpConnection.StartListening(int.Parse(ConfigurationManager.AppSettings["tcpport"]));
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Listen TCP...");
         }
 
         public void RunStopActions()
@@ -82,6 +86,9 @@ namespace AppServer
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Connection disposed.");
             HbListener.Instance.Connector = null;
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Redis connection set to null.");
+
+            InternalNetworkListener.Instance.TcpConnection.Dispose();
+            Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Dispose TCP connection");
         }
 
         protected override void OnStart(string[] args)
