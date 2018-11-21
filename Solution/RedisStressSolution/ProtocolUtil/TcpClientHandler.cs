@@ -42,8 +42,9 @@ namespace ProtocolUtil
         private void StartConversation()
         {
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, $"{_clientSocketAddress} Start");
-            _lastReceiveDateTime = DateTime.UtcNow;
-            _currentReceiveDateTime = DateTime.UtcNow;
+            DateTime utcNow = DateTime.UtcNow;
+            _lastReceiveDateTime = utcNow;
+            _currentReceiveDateTime = utcNow;
             Timer t = new Timer(new TimerCallback(CheckClientCommInterval), null, 15000, 15000);
             int bytesRec = 0;
 
