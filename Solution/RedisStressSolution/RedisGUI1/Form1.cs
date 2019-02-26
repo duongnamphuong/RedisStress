@@ -26,7 +26,7 @@ namespace RedisGUI1
         {
             try
             {
-                this.connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
+                this.connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"], false);
                 MessageBox.Show("Connect successfully");
             }
             catch (Exception ex)

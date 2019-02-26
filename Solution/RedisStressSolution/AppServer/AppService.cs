@@ -30,7 +30,7 @@ namespace AppServer
 
         public void RunStartActions()
         {
-            HbListener.Instance.Connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
+            HbListener.Instance.Connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"], false);
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Connected to Redis server.");
             List<Product> products = null;
             using (RedisStressContext ctx = new RedisStressContext())

@@ -28,7 +28,7 @@ namespace StatusFeeder
             Log4netLogger.Info(MethodBase.GetCurrentMethod().DeclaringType, "Windows service OnStart");
             try
             {
-                FeederHandler.Instance.Connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
+                FeederHandler.Instance.Connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"], false);
                 using (RedisStressContext ctx = new RedisStressContext())
                 {
                     FeederHandler.Instance.ImeiList= ctx.Products.Select(p => p.Imei).ToList();

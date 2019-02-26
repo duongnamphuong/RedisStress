@@ -13,7 +13,7 @@ namespace RedisStressConsole1
             var rnd = new Random();
             try
             {
-                RedisConnector connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"]);
+                RedisConnector connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"], false);
 
                 #region delete
                 Console.WriteLine("DELETE all \"Product*\"-pattern keys in Redis...");
