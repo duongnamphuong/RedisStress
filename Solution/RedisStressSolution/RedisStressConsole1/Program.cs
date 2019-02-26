@@ -1,5 +1,7 @@
 ﻿using RedisUtil;
+using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
@@ -13,6 +15,43 @@ namespace RedisStressConsole1
             var rnd = new Random();
             try
             {
+                //Wiki for connection string: https://stackexchange.github.io/StackExchange.Redis/Configuration
+                using (var conn = ConnectionMultiplexer.Connect($"{ConfigurationManager.AppSettings["redisserver"]},allowAdmin=true,abortConnect=false,password=foobared"))
+                {
+                    var server = conn.GetServer(ConfigurationManager.AppSettings["redisserver"]);
+                    var database = conn.GetDatabase();
+
+                    #region StringSet
+
+                    database.StringSet("key1", "12");
+                    database.StringSet("key2", "12");
+                    database.StringSet("lock1", "12");
+
+                    #endregion
+
+                    #region KeyDelete
+
+                    int deleted = 0;
+                    IEnumerable<RedisKey> keys = server.Keys(pattern: "key*");
+                    foreach (var key in keys)
+                    {
+                        if(database.KeyDelete(key))
+                        {
+                            deleted++;
+                        }
+                    }
+                    Console.WriteLine($"{deleted} keys were deleted.");
+
+                    #endregion
+
+                    #region StringGet
+
+                    RedisValue val = database.StringGet("lock1");
+                    Console.WriteLine($"{val}");
+
+                    #endregion
+                }
+                /*
                 RedisConnector connector = new RedisConnector(ConfigurationManager.AppSettings["redisserver"], false);
 
                 #region delete
@@ -48,6 +87,7 @@ namespace RedisStressConsole1
                 }
                 end = DateTime.Now;
                 Console.WriteLine($"Updating {NumberOfHeartbeats} heatbeats in {(end - start).TotalMilliseconds} millisecs");
+                */
             }
             catch (Exception e)
             {
